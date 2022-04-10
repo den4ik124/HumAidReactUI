@@ -1,0 +1,23 @@
+.ui.top.attached.label:first-child+ :not(.attached),
+.ui.top.attached.label+[class*="right floated"]+* {
+    margin-top: 0 !important;
+}
+
+.ui.bottom.attached.label:first-child~ :last-child:not(.attached) {
+    margin-top: 0em;
+    margin-bottom: 2rem !important;
+}
+
+.ui.input>input {
+    text-align: center;
+}
+
+.ui.inverted.olive.segment {
+    background-color: #5eff0079!important;
+    border-radius: 1rem;
+}
+
+.ui.inverted.segment>.ui.header {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+}
