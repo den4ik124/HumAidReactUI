@@ -38,7 +38,6 @@ function NavBar(){
             <Container>
                 <Menu.Item as={NavLink} to='/' exact content='Home' name='home' active={state==='home'} onClick={(e, name) => handleItemClick(e, name)}/>
                     
-                    {console.log("HERE" + user!.roles)}
                     { user != null ? (
                     <>
                         <Menu.Item as={NavLink} to='/Products' content="Products" name='products' active={state==='products'} onClick={(e, name) => handleItemClick(e, name)}/>
