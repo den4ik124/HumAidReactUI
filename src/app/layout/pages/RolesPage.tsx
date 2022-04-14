@@ -39,7 +39,7 @@ function RolesPage(){
 
     return(
         <Fragment>
-            <Label ribbon  color="red" size="huge" content="Page is in design progress ..."/>
+            {/* <Label ribbon  color="red" size="huge" content="Page is in design progress ..."/> */}
             <Container>
                 <Formik 
                 initialValues={{
@@ -77,10 +77,8 @@ function RolesPage(){
                     <Item.Content>
                         <Item.Header>
                             {role.name}
-                            {/* <MyTextInput name="roleName" placeholder="Role name" type="text" readonly={true} value={role.name}/> */}
-                            {/* <MyTextInput name="roleName" placeholder="Role name" type="text"/> */}
                             <Item.Extra>
-                                <DeleteButton name={role.id}  floated='right' onClick={() => handleRemoveRole(role.id)}/>
+                                <DeleteButton name={role.id}  floated='right' onClick={() => handleRemoveRole(role.id)} />
                                 <EditButton floated='right' onClick={() => null}/>
                             </Item.Extra>
                         </Item.Header>

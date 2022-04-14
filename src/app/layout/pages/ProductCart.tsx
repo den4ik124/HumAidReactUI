@@ -15,6 +15,7 @@ import './gridCustomStyles.css';
  function ProductCart(){
     const {orderItemStore} = useStore()
     const {orderItemStore: {orderItems}} = useStore()
+    // const {orderItemStore: {orderItemsDto}} = useStore()
     const [disabled, setDisabled] = useState(false);
 
     
@@ -35,12 +36,19 @@ import './gridCustomStyles.css';
     }
 
     
-    function handleOrderCreation(): void {
-        agent.Order.create(orderItems);
+    const handleOrderCreation = async() =>{
+        await agent.Order.create(orderItems);
         runInAction(() => orderItemStore.orderItems = []);
         history.push('/Products');
         toast.success('Products successfully purchased.')
-    }
+    };
+    // : void {
+    //     // orderItemStore.createOrderItem()
+    //     await agent.Order.create(orderItems);
+    //     runInAction(() => orderItemStore.orderItems = []);
+    //     history.push('/Products');
+    //     toast.success('Products successfully purchased.')
+    
 
     return(
         <Grid columns={2}>
@@ -48,7 +56,7 @@ import './gridCustomStyles.css';
                 <Header> Your products</Header>
                 <Item.Group>
                     {orderItems.map((item) => (
-                        <OrderListItem key={item.id} item={item}/>
+                        <OrderListItem key={item.productId} item={item}/>
                     ))}
                     
                 </Item.Group>
@@ -56,10 +64,9 @@ import './gridCustomStyles.css';
                 <Rail position='right'>
                     <Sticky offset={50} >
                     <Segment textAlign="center" inverted color="olive">
-                        <Header as='h3'>Сумма заказа</Header>
+                        <Header as='h3' content={"Всего товаров:"}/>
                         <Statistic size="small">
-                            <Statistic.Value content={`${orderItemStore.getTotalCost()} UAH`}/>
-                            <Statistic.Label content='Total cost'/>
+                            <Statistic.Value content={`${orderItemStore.getTotalCost()} шт.`}/>
                         </Statistic>
                         <Divider/>
                         <Button positive disabled={disabled} content='Оформить заказ' onClick={() => handleOrderCreation()}/>

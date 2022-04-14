@@ -1,7 +1,7 @@
 export interface Product{
     id: string;
     title: string;
-    price: number;
+    count: number;
     description: string;
     rating? : number;
 }
@@ -9,6 +9,6 @@ export interface Product{
 export interface ProductCreationForm{
     id: string;
     title: string;
-    price: number;
+    count: number;
     description?: string;
 }

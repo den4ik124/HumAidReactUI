@@ -6,18 +6,21 @@ import ProductModalForm from './ProductModalForm';
 
 interface Props{
     trigger: React.ReactNode
+    updateList : () => void
 }
 
-function ModalExampleModal(props : Props) {
+function CreateNewProductModal(props : Props) {
   const [open, setOpen] = useState(false)
   const {productStore} = useStore();
+
     
 function handleNewProductCreation( values : any,
     setErrors: (errors: import("formik")
-               .FormikErrors<{ title: string; price: string; description: string; error: string | null; }>) => void): any {
-        if(values.price <= 0){
+               .FormikErrors<{ title: string; count: number; description: string; error: string | null; }>) => void): any {
+        if(values.count <= 0){
           var message = "Price has incorrect value";
         }
+        props.updateList();
         productStore.createProduct(values)
           .catch(error => setErrors({error: message}));
         setOpen(false);
@@ -25,7 +28,7 @@ function handleNewProductCreation( values : any,
 
   return (
     <Modal
-      onClose={() =>setOpen(false)}
+      onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       trigger={props.trigger}
@@ -36,7 +39,7 @@ function handleNewProductCreation( values : any,
                 initialValues ={{
                     id: '', 
                     title: '',
-                    price: 0,
+                    count: 0,
                     description: '',
                     error: null
             }}
@@ -58,4 +61,4 @@ function handleNewProductCreation( values : any,
 
 }
 
-export default ModalExampleModal
+export default CreateNewProductModal

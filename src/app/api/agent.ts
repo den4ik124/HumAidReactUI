@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { OrderItem } from "../models/orderItem";
+import { OrderItem, OrderItemDto } from "../models/orderItem";
 import { Product, ProductCreationForm } from "../models/product";
 import { Role, RoleFormValues } from "../models/role";
 import { Ship } from "../models/ship";

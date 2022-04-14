@@ -1,10 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import { Product } from "../models/product";
-import { OrderItem } from "../models/orderItem";
+import { OrderItem, OrderItemDto } from "../models/orderItem";
 
 export default class OrderItemStore{
     orderItem: OrderItem | null = null;
     orderItems: OrderItem[] = [];
+    // orderItemsDto: OrderItemDto[] = [];
 
     constructor(){
         makeAutoObservable(this)
@@ -14,13 +15,12 @@ export default class OrderItemStore{
     createOrderItem = ( product : Product) => {
         try {
             this.orderItem = {
-                id : product.id,
+                productId : product.id,
                 product : product,
                 productAmount : 1,
                 isActive: true,
-                totalCost : (product, count) => product.price * count 
             };
-            var itemIndex = this.orderItems.findIndex((item) => (this.orderItem!.id === item.id));
+            var itemIndex = this.orderItems.findIndex((item) => (this.orderItem!.productId === item.productId));
             if(itemIndex > -1){
                 this.orderItems[itemIndex].productAmount ++;
             }
@@ -37,7 +37,7 @@ export default class OrderItemStore{
         
         for (let index = 0; index < this.orderItems.length; index++) {
             if(this.orderItems[index].isActive){
-                totalCost += this.orderItems[index].product.price * this.orderItems[index].productAmount;
+                totalCost += this.orderItems[index].productAmount;
             }
         }
         return totalCost;

@@ -17,13 +17,21 @@ function OrderListItem({item} : Props){
     function decreaseCount(orderItem : OrderItem){
         runInAction(() => {orderItem.productAmount--
         if(orderItem.productAmount < 1){
-           orderItem.productAmount =1;
+           orderItem.productAmount = 1;
         }
     });
     }
     
     function increaseCount(orderItem : OrderItem){
-        runInAction(() => orderItem.productAmount++);
+        runInAction(() =>
+        {
+             orderItem.productAmount++
+             if(orderItem.productAmount > orderItem.product.count)
+             {
+                orderItem.productAmount = orderItem.product.count;
+             }
+
+        });
     }
     
 function handleRemoveItemFromCart(e:  React.MouseEvent<HTMLElement, MouseEvent>,
@@ -49,13 +57,12 @@ function handleRestoreItem(e: React.MouseEvent<HTMLElement, MouseEvent> , item :
 }
 
     return(
-        <Item key={item.id} >
+        <Item key={item.productId} >
         <>
         {item.isActive ? null : (
             renderRestoreRemoveButtons(item)
         )}
         <Segment
-            
             floated="left"
             style={{margin : "0px"}} 
             //name={item.id} 
@@ -91,7 +98,7 @@ function handleRestoreItem(e: React.MouseEvent<HTMLElement, MouseEvent> , item :
             </Form>
             </Grid.Column>
             <Grid.Column width={3}>
-                <Item.Content verticalAlign="middle" content={`${item.product.price} UAH`}/>
+                <Item.Content verticalAlign="middle" content={`${item.product.count} UAH`}/>
             </Grid.Column>
         </Grid>
         </Segment>

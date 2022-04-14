@@ -15,32 +15,24 @@ function EditProductItem({trigger, product, onApplyButtonClick}  : Props) {
   const [open, setOpen] = useState(false)
   const {productStore} = useStore();
     
-// function handleProductEditing({ values, setErrors }: {
-//   values: {
-//     id: string;
-//     title: string;
-//     price: number;
-//     description: string;
-//     error: null;
-//   }; setErrors: (errors: import("formik").FormikErrors<{ title: string; price: number; description: string; error: string | null; }>) => void;
-// }): void {
+
 function handleProductEditing(values: {
       id: string;
       title: string;
-      price: number;
+      count: number;
       description: string;
       error: null;
     }, 
-    setErrors: (errors: import("formik").FormikErrors<{ title: string; price: number; description: string; error: string | null; }>) => void){
+    setErrors: (errors: import("formik").FormikErrors<{ title: string; count: number; description: string; error: string | null; }>) => void){
       console.log(values);
       var product : Product = {
         id : values.id,
         title: values.title,
-        price: values.price,
+        count: values.count,
         description: values.description
       } 
-      if(values.price <= 0){
-        var message = "Price has incorrect value";
+      if(values.count <= 0){
+        var message = "Count has incorrect value";
       }
       productStore.editProduct(product)
       .catch(error => setErrors({error: `${message}`}));
@@ -61,7 +53,7 @@ function handleProductEditing(values: {
                 initialValues ={{
                     id: product.id, 
                     title: product.title,
-                    price: product.price,
+                    count: product.count,
                     description: product.description,
                     error: null
             }}

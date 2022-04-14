@@ -25,7 +25,7 @@ function UsersPage(){
 
     return(
         <Fragment>
-        <Label ribbon  color="red" size="huge" content="Page is in design progress ..."/>
+        {/* <Label ribbon  color="red" size="huge" content="Page is in design progress ..."/> */}
         <Item.Group divided unstackable>
             {users.map((user) => (
                 <UserListItem key={user.token} user={user} onStateChanged={() => setUpdateItems(true)} />

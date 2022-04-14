@@ -11,7 +11,7 @@ interface Props{
     errors: FormikErrors<{
                           id: string;
                           title: string;
-                          price: number;
+                          count: number;
                           description: string;
                           error: null;
                       }>
@@ -23,7 +23,7 @@ function ProductModalForm({handleSubmit, isSubmitting, applyButtonContent, error
   return (
     <Form className="ui form" onSubmit={handleSubmit} autoComplete="off" size="large">
         <MyTextInput name = 'title' placeholder='Product title' type='text'/>
-        <MyTextInput name = 'price' placeholder='Product price' type='number'/>
+        <MyTextInput name = 'count' placeholder='Product count' type='number'/>
         <MyTextArea name = 'description' rows={5} placeholder='Description' type='text'/>
         <ErrorMessage 
                         name="error"
