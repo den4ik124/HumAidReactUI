@@ -38,7 +38,7 @@ function ProductItemCard( {product} : Props){
         if(user!.roles.includes('Manager') || user!.roles.includes('Admin')){
             return(
                 <>
-                    <DeleteButton name={product.id} floated="right" onClick={() => handleRemove(product.id)} disabled={product.count==0}/>
+                    <DeleteButton name={product.id} floated="right" onClick={() => handleRemove(product.id)}/>
                     <EditProductItem 
                         trigger={<EditButton floated='right'/>}
                         product = {product}

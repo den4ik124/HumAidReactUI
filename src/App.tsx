@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from './app/layout/pages/errors/NotFound';
 import ServerError from './app/layout/pages/errors/ServerError';
 import NetworkError from './app/layout/pages/errors/NetworkError';
+import OrdersAdminPage from './app/layout/pages/OrdersAdminPage';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                 <Route exact path={'/admin/users'} component={UsersPage}/>    
                 <Route exact path={'/admin/roles'} component={RolesPage}/>    
                 <Route exact path={'/admin/errors'} component={TestErrors}/>    
+                <Route exact path={'/admin/orders'} component={OrdersAdminPage}/>    
 
                 {/* ERROR PAGES */}
                 <Route exact path={'/error/NotFound'} component={NotFound}/>    
