@@ -76,7 +76,9 @@ function renderControllButtons(product : Product){
 return(
 <Grid columns={1}>
     <Grid.Column>
-     <Container style={{backgroundColor:"red"}}>
+     <Container 
+    //  style={{backgroundColor:"red"}}
+     >
         <Fragment>
              {user!.roles.includes('Manager') || user!.roles.includes('Admin') ? (
                  <>

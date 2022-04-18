@@ -14,8 +14,8 @@ const sleep = (delay: number) => {
     })
 }
 
-axios.defaults.baseURL = "http://localhost:5000"
-//axios.defaults.baseURL = "https://humanitarianaidapi.azurewebsites.net"
+//axios.defaults.baseURL = "http://localhost:5000"
+axios.defaults.baseURL = "https://humanitarianaidapi.azurewebsites.net"
 
 axios.interceptors.request.use(config =>{
     config.withCredentials = true;

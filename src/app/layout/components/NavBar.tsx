@@ -17,7 +17,7 @@ function NavBar(){
     const orderItemsCount = orderItemStore.orderItems.length;
 
     function renderUserName(){
-        var login = `Welcome back ${user!.userName}`;
+        var login = `Привет ${user!.userName}`;
         if(user!.roles.includes('Admin')){
             return <Label content={login} color='green' size='large'/>    
         }
@@ -36,16 +36,16 @@ function NavBar(){
         <>
         <Menu inverted pointing secondary style={{marginTop : "0px"}} >
             <Container>
-                <Menu.Item as={NavLink} to='/' exact content='Home' name='home' active={state==='home'} onClick={(e, name) => handleItemClick(e, name)}/>
+                <Menu.Item as={NavLink} to='/' exact content='Главная' name='home' active={state==='home'} onClick={(e, name) => handleItemClick(e, name)}/>
                     
                     { user != null ? (
                     <>
-                        <Menu.Item as={NavLink} to='/Products' content="Products" name='products' active={state==='products'} onClick={(e, name) => handleItemClick(e, name)}/>
+                        <Menu.Item as={NavLink} to='/Products' content="Гум. товары" name='products' active={state==='products'} onClick={(e, name) => handleItemClick(e, name)}/>
                         {user != null && user.roles.includes('Admin') ? (
                             <Dropdown pointing text="Admins" className="link item" >
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={NavLink} to='/admin/roles' name='Roles' content="Roles (admins only)" />
-                                    <Dropdown.Item as={NavLink} to='/admin/users' name='Users' content="Users (admins only)" />
+                                    <Dropdown.Item as={NavLink} to='/admin/roles' name='Roles' content="Роли и категории (admins only)" />
+                                    <Dropdown.Item as={NavLink} to='/admin/users' name='Users' content="Пользователи (admins only)" />
                                     <Dropdown.Item as={NavLink} to='/admin/errors' name='Errors' content="Errors (admins only)" />
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -70,7 +70,7 @@ function NavBar(){
                                 <Button.Content visible>
                                     <Icon name="log out" size="large"/>
                                 </Button.Content>
-                                <Button.Content hidden>Logout</Button.Content>
+                                <Button.Content hidden>Выйти</Button.Content>
                         </Menu.Item>
                     </>
                 ) : null}
