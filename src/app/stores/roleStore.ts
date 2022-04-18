@@ -13,7 +13,6 @@ export default class RoleStore{
     getRoles = async () => {
         try{
             const roles = await agent.Roles.list();
-            // console.log(roles);
             runInAction(()=>this.roles = roles);
         }catch (error){
             console.log(error);
@@ -23,7 +22,6 @@ export default class RoleStore{
     createRole = async (roleForm : RoleFormValues) => {
         try{
             await agent.Roles.add(roleForm);
-            // console.log(roleForm);
         }catch (error){
             console.log(error);
         }
@@ -32,7 +30,6 @@ export default class RoleStore{
     removeRole = async (roleId : string) => {
         try{
             await agent.Roles.remove(roleId);
-            // console.log(roleId);
         }catch (error){
             console.log(error);
         }

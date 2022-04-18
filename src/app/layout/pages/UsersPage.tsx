@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import React, { Fragment, useEffect, useState } from "react"
-import { Item, Label } from "semantic-ui-react"
+import { Item } from "semantic-ui-react"
 import agent from "../../api/agent";
 import { User } from "../../models/user";
 import LoadingComponent from "../components/LoadingComponents";
@@ -25,7 +25,6 @@ function UsersPage(){
 
     return(
         <Fragment>
-        {/* <Label ribbon  color="red" size="huge" content="Page is in design progress ..."/> */}
         <Item.Group divided unstackable>
             {users.map((user) => (
                 <UserListItem key={user.token} user={user} onStateChanged={() => setUpdateItems(true)} />

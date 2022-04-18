@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Container, Grid, Header, Icon, Item, Label, List, Segment, Table } from "semantic-ui-react";
+import { Grid, Header, Icon, Item, Segment } from "semantic-ui-react";
 
 function OrdersAdminPage(){
     return(

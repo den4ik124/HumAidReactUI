@@ -1,12 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { OrderItem, OrderItemDto } from "../models/orderItem";
+import { OrderItem } from "../models/orderItem";
 import { Product, ProductCreationForm } from "../models/product";
 import { Role, RoleFormValues } from "../models/role";
-import { Ship } from "../models/ship";
 import { User, UserFormValues } from "../models/user";
 import { store } from "../stores/store";
 import {toast} from 'react-toastify'
 import { history } from "../..";
+import { Category } from "../models/category";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -14,8 +14,8 @@ const sleep = (delay: number) => {
     })
 }
 
-//axios.defaults.baseURL = "http://localhost:5000"
-axios.defaults.baseURL = "https://humanitarianaidapi.azurewebsites.net"
+axios.defaults.baseURL = "http://localhost:5000"
+//axios.defaults.baseURL = "https://humanitarianaidapi.azurewebsites.net"
 
 axios.interceptors.request.use(config =>{
     config.withCredentials = true;
@@ -84,9 +84,6 @@ const requests = {
     delete:<T> (url: string) => axios.delete<T>(url).then(responseBody),
 }
 
-const Ships = {
-    list: () => requests.get<Ship[]>('/ships')
-}
 
 const Users = {
     list: () => requests.get<User[]>('/account/users'),
@@ -95,14 +92,20 @@ const Users = {
 }
 
 const Products ={
-    list: () => requests.get<Product[]>('/shop'),
+    list: (categoryName : string) => requests.get<Product[]>(`/shop/get/${categoryName}`),
     add: (product : ProductCreationForm) => requests.post<void>('/Shop', product),
     remove: (id : string) => requests.delete<void>(`/Shop/${id}`),
     edit: (product : Product) => requests.put<void>(`/Shop/product_id${product.id}`, product)
 }
 
+const Categories ={
+    list: () => requests.get<Category[]>('/categories'),
+    add: (categoryName: string) => requests.post<void>(`/categories/add_${categoryName}`, categoryName),
+    remove: (categoryId : number) => requests.delete<void>(`/categories/${categoryId}`),
+}
+
 const Order = {
-    create: (order : OrderItem[]) => requests.post<void>('/Shop/createOrder', order),
+    create: (order : OrderItem[]) => requests.post<void>('/shop/createOrder', order),
 }
 
 const Account = {
@@ -122,12 +125,12 @@ const Roles ={
 }
 
 const agent ={
-    Ships,
     Account,
-    Users,
+    Categories,
+    Order,
     Products,
     Roles,
-    Order,
+    Users,
 }
 
 export default agent;

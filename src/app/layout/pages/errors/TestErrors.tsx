@@ -6,6 +6,8 @@ import { observer } from 'mobx-react-lite';
 
 function TestErrors() {
     const baseUrl = 'http://localhost:5000/'
+    //const baseUrl = "https://humanitarianaidapi.azurewebsites.net"
+
     // const [errors, setErrors] = useState(['testError1', 'testError2', 'testError3']);
     const [errors, setErrors] = useState(null);
 

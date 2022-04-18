@@ -1,11 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import { Product } from "../models/product";
-import { OrderItem, OrderItemDto } from "../models/orderItem";
+import { OrderItem } from "../models/orderItem";
 
 export default class OrderItemStore{
     orderItem: OrderItem | null = null;
     orderItems: OrderItem[] = [];
-    // orderItemsDto: OrderItemDto[] = [];
 
     constructor(){
         makeAutoObservable(this)

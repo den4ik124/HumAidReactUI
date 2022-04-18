@@ -11,7 +11,6 @@ export default function DeleteButton(props: Props){
     const [loading, setLoading] = useState(false);
 
 function handleDelete(e: SyntheticEvent<HTMLButtonElement>){
-    // console.log(e.currentTarget.name);
     props.onClick();
     setLoading(true);
 }

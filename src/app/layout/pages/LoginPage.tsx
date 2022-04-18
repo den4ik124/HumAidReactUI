@@ -1,13 +1,12 @@
 import { ErrorMessage, Formik } from "formik";
 import React, { useState } from "react";
-import { Button, Container, Divider, Form, Header, Icon, Label, List, Modal } from "semantic-ui-react";
+import { Button, Divider, Form, Header, Label, Modal } from "semantic-ui-react";
 import MyTextInput from "../../common/MyTextInput";
 import * as Yup from 'yup';
 import { useStore } from "../../stores/store";
 import { observer } from "mobx-react-lite";
 import { UserFormValues } from "../../models/user";
 import './loginForm.css';
-import GoogleButtonTEST from "../../common/GoogleSignInButton";
 
 interface Props{
     trigger: React.ReactNode

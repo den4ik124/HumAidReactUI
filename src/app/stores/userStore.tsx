@@ -66,8 +66,6 @@ export default class UserStore{
     getUser = async () => {
         try{
             const user = await agent.Account.current();
-            console.log("RESPONSE :\n" + user.userName);
-            // console.log(user);
             runInAction(()=>{
                 this.user = user;
             });
@@ -81,7 +79,6 @@ export default class UserStore{
     getUsers = async () => {
         try{
             const users = await agent.Users.list();
-            // console.log(users);
             runInAction(()=>this.users = users);
         }catch (error){
             console.log(error);

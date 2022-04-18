@@ -16,11 +16,10 @@ export default class ProductStore{
         return this.products.length > 0;
     }
 
-    getProducts = async () => {
+    getProducts = async (categoryName : string) => {
         try{
-            const products = await agent.Products.list();
+            const products = await agent.Products.list(categoryName);
             this.productsCount = products.length;
-            // console.log(products);
             runInAction(()=>this.products = products);
         }catch (error){
             console.log(error);
@@ -50,7 +49,6 @@ export default class ProductStore{
     removeProduct = async (id : string) => {
         try{
             await agent.Products.remove(id);
-            // console.log(`Product with id = ${id} has been successfully removed`);
         } catch (error){
             console.log(error);
         };

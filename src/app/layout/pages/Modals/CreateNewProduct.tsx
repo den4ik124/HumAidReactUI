@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import React, { useState } from 'react'
 import { Modal } from 'semantic-ui-react'
+import { Category } from '../../../models/category';
 import { useStore } from '../../../stores/store';
 import ProductModalForm from './ProductModalForm';
 
@@ -16,9 +17,13 @@ function CreateNewProductModal(props : Props) {
     
 function handleNewProductCreation( values : any,
     setErrors: (errors: import("formik")
-               .FormikErrors<{ title: string; count: number; description: string; error: string | null; }>) => void): any {
-        if(values.count <= 0){
-          var message = "Price has incorrect value";
+               .FormikErrors<{ title: string; 
+                                count: number; 
+                                countPerCustomer: number, 
+                                description: string; 
+                                error: string | null; }>) => void): any {
+        if(values.count <= 0 || values.countPerCustomer <= 0){
+          var message = "Неверное количество товара";
         }
         props.updateList();
         productStore.createProduct(values)
@@ -33,23 +38,25 @@ function handleNewProductCreation( values : any,
       open={open}
       trigger={props.trigger}
     >
-      <Modal.Header>Add new product</Modal.Header>
+      <Modal.Header>Создаем новый продукт</Modal.Header>
       <Modal.Content>
             <Formik 
                 initialValues ={{
                     id: '', 
                     title: '',
-                    count: 0,
+                    count: '',
+                    countPerCustomer: '',
                     description: '',
+                    category: {id : 0},
                     error: null
-            }}
+                }}
             onSubmit={(initialValues, {setErrors}) => handleNewProductCreation(initialValues, setErrors)}
             >
             {({handleSubmit, isSubmitting, errors}) => (
               <ProductModalForm 
                 handleSubmit={handleSubmit} 
                 isSubmitting={isSubmitting}
-                applyButtonContent={'Create'}
+                applyButtonContent={'Создать'}
                 errors = {errors}
                 />
             )}
