@@ -2,14 +2,12 @@ import { ErrorMessage, Formik} from "formik";
 import { observer } from "mobx-react-lite";
 import React, { Fragment, useEffect, useState } from "react";
 import { Item,  Button, Label, Container, Form, Grid } from "semantic-ui-react";
-import agent from "../../api/agent";
 import MyTextInput from "../../common/MyTextInput";
 import DeleteButton from "../../common/DeleteButton";
 import { Role, RoleFormValues } from "../../models/role";
 import { useStore } from "../../stores/store";
 import LoadingComponent from "../components/LoadingComponents";
 import EditButton from "../../common/EditButton";
-import { GeneratedIdentifierFlags } from "typescript";
 import { Category } from "../../models/category";
 
 function RolesPage(){
@@ -31,7 +29,6 @@ function RolesPage(){
             setLoading(false);
             setUpdateList(false);
         })
-        // agent.Roles.list()
 
     }, [shouldUpdate])
 

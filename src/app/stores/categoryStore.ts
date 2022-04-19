@@ -1,7 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Product, ProductCreationForm } from "../models/product";
-import {v4 as uuid} from 'uuid';
 import { Category } from "../models/category";
 
 export default class CategoryStore{

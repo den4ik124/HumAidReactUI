@@ -4,13 +4,6 @@ import { Dropdown } from 'semantic-ui-react'
 import { Category } from '../models/category';
 
 function getCategoriesList(categories: Category[]){
-var test = categories.map((category)=>(
-  {
-      key: category.id,
-      text: category.name,
-      value: category.name,
-  }
-));
 
     return categories.map((category)=>(
         {

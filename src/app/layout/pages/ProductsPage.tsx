@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { Fragment, SyntheticEvent, useEffect, useState } from "react";
-import { Button, Container, Header, Card, Icon, Grid, Menu, Item, Rail, Segment, Sticky} from "semantic-ui-react";
+import { Button, Container, Header, Card, Icon, Grid, Menu, Item, Rail, Segment, Sticky, Image, GridColumn} from "semantic-ui-react";
 import DeleteButton from "../../common/DeleteButton";
 import EditButton from "../../common/EditButton";
 import { Category } from "../../models/category";
@@ -76,90 +76,109 @@ function renderControllButtons(product : Product){
 return(
 <Grid columns={1}>
     <Grid.Column>
-     <Container 
-    //  style={{backgroundColor:"red"}}
-     >
-        <Fragment>
-             {user!.roles.includes('Manager') || user!.roles.includes('Admin') ? (
-                 <>
-                     <CreateNewProduct 
-                        updateList={()=> setUpdateList(true)} 
-                        trigger={
-                            <Button fluid 
-                                    positive 
-                                    content="Добавить новый товар"
-                                    compact
-                                    style={{marginBottom: "3%"}}/>
-                        }
-                     />
-                 </>
-             ) : null}
+        <Grid columns={4} relaxed stackable style={{marginTop: "3%"}}>
+        {user!.roles.includes('Manager') || user!.roles.includes('Admin') ? (
+            <>
+        <Grid.Column>
 
-             <Grid columns={4} relaxed stackable>
-             {products.slice().sort((p1, p2) => p2.count - p1.count).map((product) => {
-                 return (
-                     <Grid.Column key={product.id}>
-                             <Card>
-                                 <Card.Content textAlign="left" >
-                                     <Container
-                                         style={{
-                                             height: "150px",
-                                             backgroundImage: `url(${product.photoUrl})`,
-                                             backgroundSize: "contain",
-                                             backgroundRepeat: "no-repeat"
-                                         }} />
-                                        <Card.Header>
-                                            <Header as={'h2'} content={product.title} />
-                                        </Card.Header>
+                <CreateNewProduct 
+                updateList={()=> setUpdateList(true)} 
+                trigger={
+                    <Card fluid 
+                            positive 
+                            compact
+                            style={{marginBottom: "3%", height:"100%"}}>
+                                <Button style={{height: "100%"}} >
+                                    <Icon name="plus" size="huge" fitted/>
+                                </Button>
+                    </Card>
+                }
+                />
+        </Grid.Column>
 
-                                     <Card.Description>
-                                         {product.description}
-                                     </Card.Description>
-                                 </Card.Content>
+            </>
+        ) : null}
 
-                                     <Card.Content extra>
-                                         <Header
-                                             textAlign="center"
-                                             color="green"
-                                             content={product.count + ' шт.'} />
-                                         <Button
-                                             name={product.id}
-                                             fluid
-                                             positive
-                                             icon={<Icon name="shop" />}
-                                             position="right"
-                                             content='Buy now!'
-                                             onClick={(e) => handleProductBuying(e, product)} 
-                                             disabled ={product.count===0}/>
-                                             {renderControllButtons(product)}
+        {user!.roles.includes("Manager") && user!.roles.includes("Admin") ? (
+        products.slice().sort((p1, p2) => p2.count - p1.count).map((product) => (
+                CardRender(product)
+        ))
+        ) : (
+            products.filter((product, index, array)=>(product.count !== 0)).slice().sort((p1, p2) => p2.count - p1.count).map((product) => (
+                CardRender(product)
+        )))}
+        </Grid>
 
-                                     </Card.Content>
-                             </Card>
-
-                     </Grid.Column>
-                 );
-             })}
-             </Grid>
-         </Fragment>
         <Rail position='left'>
-        <Sticky offset={100} >
+        <Sticky offset={112} >
         <Segment textAlign="center">
             <Item.Group divided>
                 {categories.map((category)=>(
-                    <Menu.Item key={category.id} as={Button} onClick = {() => handleCategoryFilter(category.name)}>
-                        <Header size="large" content={category.name} />
-                    </Menu.Item>
+                    <Grid columns={2}>
+                        <Grid.Column width={10}>
+                            <Menu.Item key={category.id} onClick = {() => handleCategoryFilter(category.name)}>
+                                <Header size="large" content={category.name} />
+                            </Menu.Item>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                            {/* <Header size="large" content={category.count} /> */}
+                            <Header size="medium" content={"(5)"} />
+                        </Grid.Column>
+                    </Grid>
+                   
                 ))}
             </Item.Group>
         </Segment>
         </Sticky>
         </Rail>     
-    </Container>
+    {/* </Container> */}
 
     </Grid.Column>
 </Grid>
-
 )
+
+    function CardRender(product: Product): JSX.Element {
+        return <Grid.Column key={product.id}>
+                    <Card
+                        style={{ marginBottom: "3%", height: "100%" }}>
+
+                        <Card.Content textAlign="left">
+                            <Container
+                                style={{
+                                    height: "150px",
+                                    backgroundImage: `url(${product.photoUrl})`,
+                                    backgroundSize: "contain",
+                                    backgroundRepeat: "no-repeat"
+                                }} />
+                            <Card.Header>
+                                <Header as={'h2'} content={product.title} />
+                            </Card.Header>
+
+                            <Card.Description>
+                                {product.description}
+                            </Card.Description>
+                        </Card.Content>
+
+                        <Card.Content extra>
+                            <Header
+                                textAlign="center"
+                                color="green"
+                                content={product.count + ' шт.'} />
+                            <Button
+                                name={product.id}
+                                fluid
+                                positive
+                                icon={<Icon name="shop" />}
+                                position="right"
+                                content='Buy now!'
+                                onClick={(e) => handleProductBuying(e, product)}
+                                disabled={product.count === 0} />
+                            {renderControllButtons(product)}
+
+                        </Card.Content>
+                    </Card>
+                </Grid.Column>;
+    }
 }
 
 export default observer(ProductsPage);

@@ -47,7 +47,7 @@ import './gridCustomStyles.css';
         <Grid columns={2}>
             <Grid.Column>
                 <Header> Your products</Header>
-                <Item.Group>
+                <Item.Group style={{width : "100%"}}>
                     {orderItems.map((item) => (
                         <OrderListItem key={item.productId} item={item}/>
                     ))}

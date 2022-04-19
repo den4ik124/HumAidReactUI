@@ -1,7 +1,6 @@
 import { Formik } from 'formik';
 import React, { useState } from 'react'
 import { Modal } from 'semantic-ui-react'
-import { Category } from '../../../models/category';
 import { useStore } from '../../../stores/store';
 import ProductModalForm from './ProductModalForm';
 
