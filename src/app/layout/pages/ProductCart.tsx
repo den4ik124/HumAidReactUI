@@ -42,13 +42,6 @@ import './gridCustomStyles.css';
         history.push('/Products');
         toast.success('Products successfully purchased.')
     };
-    // : void {
-    //     // orderItemStore.createOrderItem()
-    //     await agent.Order.create(orderItems);
-    //     runInAction(() => orderItemStore.orderItems = []);
-    //     history.push('/Products');
-    //     toast.success('Products successfully purchased.')
-    
 
     return(
         <Grid columns={2}>
