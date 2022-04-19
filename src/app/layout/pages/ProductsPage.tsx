@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import React, { Fragment, SyntheticEvent, useEffect, useState } from "react";
-import { Button, Container, Header, Card, Icon, Grid, Menu, Item, Rail, Segment, Sticky, Image, GridColumn} from "semantic-ui-react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
+import { Button, Container, Header, Card, Icon, Grid, Menu, Item, Rail, Segment, Sticky} from "semantic-ui-react";
 import DeleteButton from "../../common/DeleteButton";
 import EditButton from "../../common/EditButton";
 import { Category } from "../../models/category";
@@ -78,9 +78,8 @@ return(
     <Grid.Column>
         <Grid columns={4} relaxed stackable style={{marginTop: "3%"}}>
         {user!.roles.includes('Manager') || user!.roles.includes('Admin') ? (
-            <>
-        <Grid.Column>
-
+        <>
+            <Grid.Column>
                 <CreateNewProduct 
                 updateList={()=> setUpdateList(true)} 
                 trigger={
@@ -92,11 +91,9 @@ return(
                                     <Icon name="plus" size="huge" fitted/>
                                 </Button>
                     </Card>
-                }
-                />
-        </Grid.Column>
-
-            </>
+                }/>
+            </Grid.Column>
+        </>
         ) : null}
 
         {user!.roles.includes("Manager") && user!.roles.includes("Admin") ? (
@@ -121,17 +118,14 @@ return(
                             </Menu.Item>
                         </Grid.Column>
                         <Grid.Column width={1}>
-                            {/* <Header size="large" content={category.count} /> */}
                             <Header size="medium" content={"(5)"} />
                         </Grid.Column>
                     </Grid>
-                   
                 ))}
             </Item.Group>
         </Segment>
         </Sticky>
         </Rail>     
-    {/* </Container> */}
 
     </Grid.Column>
 </Grid>

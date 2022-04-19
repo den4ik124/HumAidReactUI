@@ -75,8 +75,9 @@ function handleProductEditing(values: {
             onSubmit={(initialValues, {setErrors}) => {
               handleProductEditing(initialValues, setErrors)}}
             >
-            {({handleSubmit, isSubmitting, errors}) => (
+            {({handleSubmit,isValid, dirty, isSubmitting, errors}) => (
               <ProductModalForm 
+                disabled = {isSubmitting || !dirty || !isValid}
                 handleSubmit={handleSubmit} 
                 isSubmitting={isSubmitting}
                 applyButtonContent={'Подтвердить изменения'}

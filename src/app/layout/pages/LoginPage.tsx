@@ -43,7 +43,6 @@ function LoginPage(props : Props){
             trigger={props.trigger}
             size="mini"
         >
-        {/* <Modal.Header content="Login" /> */}
             <Formik 
                 validationSchema={validationSchema}
                 initialValues ={{

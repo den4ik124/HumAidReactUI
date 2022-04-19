@@ -46,15 +46,16 @@ function handleNewProductCreation( values : any,
                     count: '',
                     countPerCustomer: '',
                     description: '',
-                    category: {id : 0},
+                    category: {id : 0, name: ""},
                     error: null
                 }}
             onSubmit={(initialValues, {setErrors}) => handleNewProductCreation(initialValues, setErrors)}
             >
-            {({handleSubmit, isSubmitting, errors}) => (
+            {({handleSubmit, isSubmitting, errors,isValid, dirty}) => (
               <ProductModalForm 
                 handleSubmit={handleSubmit} 
                 isSubmitting={isSubmitting}
+                disabled = {isSubmitting || !dirty || !isValid}
                 applyButtonContent={'Создать'}
                 errors = {errors}
                 />
